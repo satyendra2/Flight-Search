@@ -1,0 +1,173 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container wrapper">
+  <h1>Flight Search Engine</h1>
+  <hr>
+  <br>
+  <div class="row">
+    <div class="col-md-4 leftSide">
+
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a data-toggle="tab" class="nav-link active" href="#oneWay">One Way</a>
+        </li>
+        <li class="nav-item">
+          <a data-toggle="tab" class="nav-link" href="#roundtrip">Return</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="oneWay" class="container tab-pane active">
+          <form (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">
+            <div class="form-group">
+              <label for="source">Source</label>
+              <select class="form-control" id="source" name="source" ngModel [(ngModel)]="flight.source" (ngModelChange)="onChangeSource($event)"
+                required>
+                <option *ngFor="let src of sourceList" [value]="src">{{src}}</option>
+              </select>
+
+            </div>
+            <div class="form-group">
+              <label for="destination">Destination</label>
+              <select class="form-control" id="destination" name="destination" ngModel [(ngModel)]="flight.destination" (ngModelChange)="onChangedestination($event)"
+                required>
+                <option *ngFor="let dest of destinationList" [value]="dest">{{dest}}</option>
+              </select>
+            </div>
+            <p *ngIf="compareStatus" class="alert alert-danger">source and destination can't be same.</p>
+            <div class="form-group">
+              <label for="departureDate">Departure Date:</label>
+              <input id="date" type="date" name="departureDate" ngModel [(ngModel)]="flight.departureDate" class="form-control" placeholder="Departure Date">
+            </div>
+            <div class="form-group">
+              <label for="passanger">Passanger:</label>
+              <input id="passanger" type="number" name="passanger" class="form-control" ngModel placeholder="Enter Passanger">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+        </div>
+        <div id="roundtrip" class="container tab-pane fade">
+          <form (ngSubmit)="returnFun(loginForm2.value)" #loginForm2="ngForm">
+            <div class="form-group">
+              <label for="source">Source</label>
+              <select class="form-control" id="source" name="source" ngModel [(ngModel)]="flight.source" (ngModelChange)="onChangeSource($event)"
+                required>
+                <option *ngFor="let src of sourceList" [value]="src">{{src}}</option>
+              </select>
+
+            </div>
+            <div class="form-group">
+              <label for="destination">Destination</label>
+              <select class="form-control" id="destination" name="destination" ngModel [(ngModel)]="flight.destination" (ngModelChange)="onChangedestination($event)"
+                required>
+                <option *ngFor="let dest of destinationList" [value]="dest">{{dest}}</option>
+              </select>
+            </div>
+            <p *ngIf="compareStatus" class="alert alert-danger">source and destination can't be same.</p>
+            <div class="form-group">
+              <label for="startDate">Departure Date:</label>
+              <input id="departureDate" name="departureDate" type="date" class="form-control" ngModel placeholder="Departure Date">
+            </div>
+            <div class="form-group">
+              <label for="endDate">Arrival Date:</label>
+              <input id="returnDate" type="date" name="returnDate" class="form-control" ngModel placeholder="Return Date">
+            </div>
+            <div class="form-group">
+              <label for="passanger">Passanger:</label>
+              <input id="passanger" type="number" name="passanger" class="form-control" ngModel placeholder="Enter Passanger">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+        </div>
+      </div>
+
+
+    </div>
+    <div *ngIf="loadingStatus" class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6">
+          <img [src]="fullImagePath" class="img-thumbnail">
+        </div>
+        <div class="col-sm-6">
+          <img [src]="fullImagePath1" class="img-thumbnail">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <img [src]="fullImagePath2" class="img-thumbnail">
+        </div>
+        <div class="col-sm-6">
+          <img [src]="fullImagePath3" class="img-thumbnail">
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="!loadingStatus && updateStatus" class="col-md-8">
+      <div class="row">
+        <h3 class="col-md-8">{{source}} > {{destination}}</h3>
+        <div class="col-md-4">
+          <h6>Depart: {{departureDate}}</h6>
+        </div>
+      </div>
+      <hr/>
+      <h3 *ngIf="departureDate != ''">
+        {{filteredFlights.length}} Flights between {{flight.source}} to {{flight.destination}} on {{departureDate | date}}
+      </h3>
+      <div style="padding:20px;" *ngFor="let flight of filteredFlights" class="card" [ngStyle]="{'background-color': (selected) ?  'orange' : 'white' }">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Rs. {{flight.flightRate}}</h2>
+            <p>{{flight.flightName}}</p>
+            <h2>{{flight.from}} - {{flight.to}}</h2>
+            <p>Depart: {{flight.departureTime}}</p>
+            <p>Arrive: {{flight.arrivalTime}}</p>
+          </div>
+          <div class="col-sm-6">
+            <img [src]="fullImagePath" class="img-thumbnail">
+            <button class="btn btn-default btn-block" *ngIf="!selected" (click)="select()" style="margin-top:2% ">Book This Flight</button>
+          </div>
+        </div>
+      </div>
+      <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    </div>
+    <div *ngIf="!loadingStatus && !updateStatus" class="col-md-8">
+        <div class="row">
+          <h3 class="col-md-8">{{source}} > {{destination}} > {{source}}</h3>
+          <div class="col-md-4">
+            <h6>Depart: {{departureDate}}</h6>
+            <h6>Return: {{returnDate}}</h6>
+          </div>
+        </div>
+        <hr/>
+        <h3 *ngIf="departureDate != ''">
+          {{filteredFlights1.length}} Flights between {{flight.source}} to {{flight.destination}} on {{departureDate | date}}
+        </h3>
+        <h3 *ngIf="returnDate != ''">
+            {{filteredFlights2.length}} Flights between {{flight.destination}} to {{flight.source}} on {{returnDate | date}}
+        </h3>
+        <div style="padding:20px;" class="card" *ngFor="let flight1 of filteredFlights1" [ngStyle]="{'background-color': (selected) ?  'orange' : 'white' }">
+          <div class="row">
+                <div class="col-md-3">
+                  <h4>Rs. {{flight1.flightRate}}</h4>
+                  <p>{{flight1.flightName}}</p>
+                  <h3>{{flight1.from}} - {{flight1.to}}</h3>
+                  <p>Depart: {{flight1.departureTime}}</p>
+                  <p>Arrive: {{flight1.arrivalTime}}</p>
+                </div>
+                <div class="col-md-3" *ngFor="let flight2 of filteredFlights2">
+                  <h4>Rs. {{flight2.flightRate}}</h4>
+                  <p>{{flight2.flightName}}</p>
+                  <h3>{{flight2.to}} - {{flight2.from}}</h3>
+                  <p>Depart: {{flight2.departureTime}}</p>
+                  <p>Arrive: {{flight2.arrivalTime}}</p>
+                </div>
+                <div class="col-md-3">
+                  <img [src]="fullImagePath" class="img-thumbnail">
+                  <button class="btn btn-default btn-block" *ngIf="!selected" (click)="select()" style="margin-top:2% ">Book This Flight</button>
+                </div>
+          </div>
+        </div>
+       </div>
+            
+     </div>
+  </div>
+        
