@@ -3,23 +3,26 @@ import { FlightService } from './service';
 import { Flight } from './flight';
 import { FlightData } from './flightData';
 import { NgForm } from '@angular/forms';
+import {FarePipe} from './flightPricePipe';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+
+  sliderValue:number = 1500;
 
   compareStatus: boolean = false;
 
   sourceList = ["Delhi", "Mumbai", "Dubai", "Goa", "Chennai", "Hyderabad", "Thailand", "Bangkok"];
-  destinationList = ["Mumbai", "Delhi", "Dubai", "Goa", "Chennai", "Hyderabad", "Thailand", "Bangkok"];
+  destinationList = ["Dubai", "Delhi", "Mumbai", "Goa", "Chennai", "Hyderabad", "Thailand", "Bangkok"];
 
   // Form validation
   flight = new Flight(this.sourceList[0], this.destinationList[0]);
   sourceValue: string = "Delhi";
-  destinationValue: string = "Mumbai";
+  destinationValue: string = "Dubai";
   loadingStatus: boolean = true;
   updateStatus:boolean = true;
   flights: FlightData[];
@@ -33,6 +36,7 @@ export class AppComponent implements OnInit {
   filteredFlights: any[];
   filteredFlights1: any[];
   filteredFlights2: any[];
+  filteredFlights3: any[];
 
   fullImagePath: string;
   fullImagePath1: string;
@@ -58,6 +62,8 @@ export class AppComponent implements OnInit {
       flights => this.flights = flights,
       error => this.errorMessage = <any>error);
   }
+
+  // One-Way form submission
   onSubmit(SearchPara: any) {
     this.loadingStatus = false;
     this.updateStatus = true;
@@ -66,31 +72,24 @@ export class AppComponent implements OnInit {
     this.departureDate = SearchPara.departureDate;
     this.returnDate = SearchPara.returnDate;
     this.passanger = SearchPara.passanger;
-    console.log("sr: " + this.source + " dest: " + this.destination + " startDate: " + this.departureDate + " endDate: " + this.returnDate + " Pass: " + this.passanger);
+    console.log("sr: " + this.source + " dest: " + this.destination + " startDate: " + this.departureDate + " Pass: " + this.passanger);
 
-    if (this.returnDate) {
+    if (this.departureDate) {
       this.filteredFlights = this.flights.filter((x) => {
         return (x.from == this.source) &&
           (x.to == this.destination) &&
-          (x.startDate == this.departureDate) &&
-          (x.endDate == this.returnDate)
+          (x.startDate == this.departureDate) 
       });
-    } else if (this.departureDate) {
+     } 
+     else{
       this.filteredFlights = this.flights.filter((x) => {
         return (x.from == this.source) &&
-          (x.to == this.destination) &&
-          (x.startDate == this.departureDate)
+          (x.to == this.destination) 
       });
-    }
-    else {
-      this.filteredFlights = this.flights.filter((x) => {
-        return (x.from == this.source) &&
-          (x.to == this.destination) ||
-          (x.startDate == this.departureDate)
-      });
-    }
-  }
+     }
+   }
 
+  //  Roundtrip form submission
   returnFun(SearchPara: any) {
     this.filteredFlights = [];
     this.loadingStatus = false;
@@ -103,46 +102,22 @@ export class AppComponent implements OnInit {
     console.log("src: " + this.source + " dest: " + this.destination + " startDate: " + this.departureDate + " endDate: " + this.returnDate + " Pass: " + this.passanger);
 
 
-    if (this.returnDate) {
+    if (this.departureDate && this.returnDate) {
       this.filteredFlights1 = this.flights.filter((x) => {
         return (x.from == this.source) &&
           (x.to == this.destination) &&
-          (x.startDate == this.departureDate) &&
-          (x.endDate == this.returnDate)
-      });
+          (x.startDate == this.departureDate) 
+      }); 
       this.filteredFlights2 = this.flights.filter((x) => {
         return (x.from == this.destination) &&
           (x.to == this.source) &&
-          (x.startDate == this.departureDate) &&
-          (x.endDate == this.returnDate)
+          (x.startDate == this.returnDate) 
       });
-    } else if (this.departureDate) {
-      this.filteredFlights1 = this.flights.filter((x) => {
-        return (x.from == this.source) &&
-          (x.to == this.destination) &&
-          (x.startDate == this.departureDate)
-      });
-      this.filteredFlights2 = this.flights.filter((x) => {
-        return (x.from == this.destination) &&
-          (x.to == this.source) &&
-          (x.startDate == this.departureDate)
-      });
-    }
-    else {
-      this.filteredFlights1 = this.flights.filter((x) => {
-        return (x.from == this.source) &&
-          (x.to == this.destination) ||
-          (x.startDate == this.departureDate)
-      });
-      this.filteredFlights2 = this.flights.filter((x) => {
-        return (x.from == this.destination) &&
-          (x.to == this.source) ||
-          (x.startDate == this.departureDate)
-      });
-     // alert(this.source +" and "+ this.filteredFlights2);
-    }
+     } 
   }
 
+
+  // Form-Value change validation
   onChangeSource(newValue) {
     this.source = newValue;
     console.log("source: " + this.source);

@@ -7,8 +7,8 @@
     "departureTime": "02:30pm",
     "arrivalTime": "03:30pm",
     "startDate": "2018-04-26",
-    "endDate": "2018-04-27",
-    "flightRate": "1500 INR"
+    "endDate": "2018-04-26",
+    "flightRate": 1500 
   },
   {
     "id": 1,
@@ -18,8 +18,8 @@
     "departureTime": "02:30pm",
     "arrivalTime": "03:30pm",
     "startDate": "2018-04-23",
-    "endDate": "2018-04-24",
-    "flightRate": "1500 INR"
+    "endDate": "2018-04-23",
+    "flightRate": 1500 
   },
   {
     "id": 2,
@@ -29,8 +29,8 @@
     "departureTime": "02:05pm",
     "arrivalTime": "03:50am",
     "startDate": "2018-04-24",
-    "endDate": "2018-04-25",
-    "flightRate": "12696 INR"
+    "endDate": "2018-04-24",
+    "flightRate": 12696 
   },
   {
     "id": 3,
@@ -41,7 +41,7 @@
     "arrivalTime": "08:15am",
     "startDate": "2018-04-25",
     "endDate": "2018-04-25",
-    "flightRate": "24135 INR"
+    "flightRate": 24135
   },
   {
     "id": 4,
@@ -51,8 +51,8 @@
     "departureTime": "11:40pm",
     "arrivalTime": "10:15am",
     "startDate": "2018-04-26",
-    "endDate": "2018-04-27",
-    "flightRate": "33909 INR"
+    "endDate": "2018-04-26",
+    "flightRate": 33909
   },
   {
     "id": 5,
@@ -62,8 +62,8 @@
     "departureTime": "05:10am",
     "arrivalTime": "07:15am",
     "startDate": "2018-04-21",
-    "endDate": "2018-04-25",
-    "flightRate": "2823 INR"
+    "endDate": "2018-04-21",
+    "flightRate": 2823 
   },
   {
     "id": 6,
@@ -74,7 +74,7 @@
     "arrivalTime": "05:00am",
     "startDate": "2018-04-25",
     "endDate": "2018-04-25",
-    "flightRate": "2948 INR"
+    "flightRate": 2948 
   },
   {
     "id": 7,
@@ -84,8 +84,8 @@
     "departureTime": "07:20pm",
     "arrivalTime": "10:50pm",
     "startDate": "2018-04-24",
-    "endDate": "2018-04-25",
-    "flightRate": "4938 INR"
+    "endDate": "2018-04-24",
+    "flightRate": 4938 
   },
   {
     "id": 8,
@@ -95,8 +95,8 @@
     "departureTime": "12:00pm",
     "arrivalTime": "02:00pm",
     "startDate": "2018-04-25",
-    "endDate": "2018-04-26",
-    "flightRate": "8049 INR"
+    "endDate": "2018-04-25",
+    "flightRate": 8049 
   },
   {
     "id": 9,
@@ -106,8 +106,8 @@
     "departureTime": "12:30pm",
     "arrivalTime": "3:30am",
     "startDate": "2018-04-25",
-    "endDate": "2018-04-26",
-    "flightRate": "1820 INR"
+    "endDate": "2018-04-25",
+    "flightRate": 1820 
   },
   {
     "id": 10,
@@ -117,8 +117,8 @@
     "departureTime": "04:20am",
     "arrivalTime": "07:50am",
     "startDate": "2018-04-28",
-    "endDate": "2018-04-29",
-    "flightRate": "2049 INR"
+    "endDate": "2018-04-28",
+    "flightRate": 2049 
   },
   {
     "id": 11,
@@ -128,8 +128,8 @@
     "departureTime": "02:30pm",
     "arrivalTime": "03:00pm",
     "startDate": "2018-04-27",
-    "endDate": "2018-04-28",
-    "flightRate": "1700 INR"
+    "endDate": "2018-04-27",
+    "flightRate": 1700 
   },
   {
     "id": 12,
@@ -140,7 +140,7 @@
     "arrivalTime": "04:00am",
     "startDate": "2018-04-30",
     "endDate": "2018-04-30",
-    "flightRate": "12096 INR"
+    "flightRate": 12096 
   },
   {
     "id": 13,
@@ -150,8 +150,8 @@
     "departureTime": "11:55am",
     "arrivalTime": "05:15am",
     "startDate": "2018-04-29",
-    "endDate": "2018-04-30",
-    "flightRate": "24035 INR"
+    "endDate": "2018-04-29",
+    "flightRate": 24035 
   },
   {
     "id": 14,
@@ -161,8 +161,8 @@
     "departureTime": "12:40am",
     "arrivalTime": "09:15pm",
     "startDate": "2018-05-01",
-    "endDate": "2018-05-05",
-    "flightRate": "30909 INR"
+    "endDate": "2018-05-01",
+    "flightRate": 30909
   },
   {
     "id": 15,
@@ -172,7 +172,47 @@
     "departureTime": "05:30am",
     "arrivalTime": "07:45am",
     "startDate": "2018-05-01",
-    "endDate": "2018-05-20",
-    "flightRate": "3823 INR"
+    "endDate": "2018-05-01",
+    "flightRate": 3823 
+  },{
+    "id": 0,
+    "flightName": "Kingfisher Goa-Delhi",
+    "from": "Goa",
+    "to": "Delhi",
+    "departureTime": "01:30pm",
+    "arrivalTime": "02:30pm",
+    "startDate": "2018-04-26",
+    "endDate": "2018-04-26",
+    "flightRate": 1600 
+  },{
+    "id": 0,
+    "flightName": "Kingfisher Delhi-Goa",
+    "from": "Delhi",
+    "to": "Goa",
+    "departureTime": "04:30pm",
+    "arrivalTime": "05:30pm",
+    "startDate": "2018-04-27",
+    "endDate": "2018-04-27",
+    "flightRate": 1800 
+  },{
+    "id": 0,
+    "flightName": "Kingfisher Goa-Delhi",
+    "from": "Goa",
+    "to": "Delhi",
+    "departureTime": "07:30pm",
+    "arrivalTime": "08:30pm",
+    "startDate": "2018-04-25",
+    "endDate": "2018-04-27",
+    "flightRate": 1700 
+  },{
+    "id": 0,
+    "flightName": "Kingfisher Delhi-Goa",
+    "from": "Delhi",
+    "to": "Goa",
+    "departureTime": "09:30pm",
+    "arrivalTime": "10:30pm",
+    "startDate": "2018-04-25",
+    "endDate": "2018-04-25",
+    "flightRate": 1900 
   }
 ]

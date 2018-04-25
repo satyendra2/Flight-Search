@@ -7,5 +7,5 @@ export  interface FlightData {
     arrivalTime:string;
     startDate:Date;
     endDate:Date;
-    flightRate:string;
+    flightRate:number;
     }

@@ -1,19 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {FlightService}from './service'
 import { HttpModule }     from '@angular/http';
+import {FarePipe} from './flightPricePipe';
 
-// import { routes } from './app.routes';
+
+
 import { AppComponent } from './app.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,FarePipe
   ],
   imports: [
     BrowserModule,NgbModule.forRoot(),FormsModule,HttpModule
